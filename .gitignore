@@ -1,1 +1,3 @@
 /mynew.box
+.vagrant/machines/clienteUbuntu/virtualbox/private_key
+.vagrant/machines/servidorUbuntu/virtualbox/private_key
