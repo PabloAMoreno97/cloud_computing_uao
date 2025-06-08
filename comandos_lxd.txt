@@ -1,0 +1,43 @@
+sudo apt update && sudo apt upgrade
+sudo apt install lxd -y
+newgrp lxd
+lxd init --auto
+
+lxc image list ubuntu: | less
+lxc launch ubuntu:20.04 "container name"
+lxc list 
+
+### Instalación de apache
+lxc exec "container name" -- apt install apache2
+lxc file push "path/of/vm" "path/of/container"
+lxc exec "container name"-- systemctl status apache2
+lxc exec "container name"-- systemctl restart apache2
+lxc info "container name"	## Gets the IP and container info
+
+
+lxc file push index.html web/var/www/html/index.html
+lxc config device add "container name" myport80 proxy listen=tcp:192.168.100.3:7080 connect=tcp:127.0.0.1:80	
+# myport80 es un nombre personalizado el puerto 7080 también es un puerto personalizado
+lxc exec web -- systemctl restart apache2
+
+sudo lsof -i -n | grep 7080	## Se prueba la conexión del puerto
+
+
+en máquina local 
+curl 192.178.100.3:7080 # Se prueba la salida del puerto conectado
+
+
+Autenticación ssh:
+sudo lxc exec "container name" bash
+
+acceder al sshd en el contenedor:
+vim /etc/ssh/sshd_config
+
+setear el parámetro
+PasswordAuthentication yes
+
+reiniciar sshd en el servidor
+service sshd restart
+
+crear un usuario:
+adduser user

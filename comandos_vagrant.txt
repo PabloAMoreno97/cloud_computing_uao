@@ -1,0 +1,12 @@
+vagrant up
+vagrant status
+vagrant ssh servidorUbuntu
+vagrant ssh clienteUbuntu
+sudo -i 
+apt-get install net-tools
+apt-get install vim
+ifconfig
+vagrant suspend
+vagrant halt
+vagrant destroy
+vagrant package servidorUbuntu --output mynew.box

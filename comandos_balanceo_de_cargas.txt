@@ -1,0 +1,10 @@
+## crear contenedor con haproxy 
+lxc launch ubuntu:18.04 haproxy
+
+## instalar haproxy en el contenedor:
+apt update && apt upgrade
+apt install haproxy
+systemctl enable haproxy
+
+## redirigir el puerto de haproxy --- al indicar el contenedor "haproxy" no es necesario agregar la IP en el listen
+lxc config device add haproxy http proxy listen=tcp:0.0.0.0:80 connect=tcp:127.0.0.1:80

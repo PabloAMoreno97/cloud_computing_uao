@@ -1,0 +1,3 @@
+lxd init
+
+lxc init ubuntu:18.04 cont_name --target vm_name
